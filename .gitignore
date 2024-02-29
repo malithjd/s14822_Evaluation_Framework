@@ -1,0 +1,15 @@
+data/meta_summaries
+data/groundtruths
+data/preprocessed_tables
+data/vl_groundtruths
+
+history/*
+
+.env
+
+litellm_uuid.txt
+
+.python-version
+
+
+

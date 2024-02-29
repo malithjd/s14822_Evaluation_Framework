@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "evaluation-framework"
+version = "0.1.0"
+description = "Evaluation of Visual Recommendation Systems Based on ML and LLM"
+authors = ["J.D.M.P Jayasinghe"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.2.0"
+numpy = "^1.26.4"
+nbformat = "^5.9.2"
+scipy = "^1.12.0"
+litellm = "^1.28.0"
+
+[tool.poetry.group.dev.dependencies]
+nbformat = "^5.9.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
