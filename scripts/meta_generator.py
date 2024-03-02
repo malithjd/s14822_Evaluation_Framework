@@ -119,9 +119,9 @@ def generate_and_save_summaries(input_dir, output_dir):
             with open(output_path, "w") as json_file:
                 json.dump(metadata, json_file, indent=4, cls=NumpyEncoder)
 
-# Specify the input and output directories
-input_dir = "data/preprocessed_tables"
-output_dir = "data/meta_summaries"
+# # Specify the input and output directories
+# input_dir = "data/preprocessed_tables"
+# output_dir = "data/meta_summaries"
 
-# Call the function to generate and save summaries
-generate_and_save_summaries(input_dir, output_dir)
+# # Call the function to generate and save summaries
+# generate_and_save_summaries(input_dir, output_dir)

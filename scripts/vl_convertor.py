@@ -18,7 +18,7 @@ def generate_llm_messages(visual_encodings, filename):
     system_prompt = """You are an expert in python visualization grammar like seaborn, matplotlib, vega-lite, plotly, etc. 
     1. ONLY RETURNS the Vega-Lite spec for each visualization inside a valid json.
     2. Identify the visualization grammar used within <Visuals> tags and CONVERT it to Vega-Lite spec, including title/description, encodings, mark and aggregation if applicable.
-    3. Do not need non-essential attributes like $schema.
+    3. Do not need non-essential attributes like $schema and data etc.
     4. In cases of ambiguity or missing information, use your best judgment to fill in gaps based on standard visualization practices.
     """
     

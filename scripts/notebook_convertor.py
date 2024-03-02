@@ -39,6 +39,7 @@ def save_visualization_codes_to_json(visual_codes: list, output_path: str):
         json.dump(visualizations_json, json_file, indent=4)
 
 def process_notebook(notebook_file: str, notebooks_dir: str, output_dir: str):
+    os.makedirs(output_dir, exist_ok=True)
     notebook_path = os.path.join(notebooks_dir, notebook_file)
     visual_codes = extract_visualization_codes(notebook_path)
     
@@ -49,15 +50,15 @@ def process_notebook(notebook_file: str, notebooks_dir: str, output_dir: str):
     
     return len(visual_codes)
 
-def main():
-    notebooks_dir = "./data/EDA_notebooks"
-    output_dir = "./data/groundtruths"
-    os.makedirs(output_dir, exist_ok=True)
+# def main():
+#     notebooks_dir = "./data/EDA_notebooks"
+#     output_dir = "./data/groundtruths"
+#     os.makedirs(output_dir, exist_ok=True)
     
-    for notebook_file in os.listdir(notebooks_dir):
-        if notebook_file.endswith('.ipynb'):
-            num_visuals = process_notebook(notebook_file, notebooks_dir, output_dir)
-            print(f"Processed {notebook_file}: {num_visuals} visualization(s) identified and saved.")
+#     for notebook_file in os.listdir(notebooks_dir):
+#         if notebook_file.endswith('.ipynb'):
+#             num_visuals = process_notebook(notebook_file, notebooks_dir, output_dir)
+#             print(f"Processed {notebook_file}: {num_visuals} visualization(s) identified and saved.")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
