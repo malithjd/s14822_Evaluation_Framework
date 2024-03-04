@@ -1,4 +1,4 @@
-# Project Title
+# Evaluation Framework For Benchmark LLM and ML-Based Visualization Recommendation Systems Using Real-World Datasets
 
 ## Description
 
@@ -58,10 +58,6 @@ Project Folder (root)
 
 This project is licensed under the [LICENSE]().
 
-## Contributing
-
-Contributions are welcome! Please read our contributing guidelines for more information.
-
 ## Contact
 
-For any queries, please contact [Your Contact Information].
+For any queries, please contact [malithjayasinghed@gmail.com].
