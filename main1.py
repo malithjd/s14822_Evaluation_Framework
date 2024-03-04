@@ -38,7 +38,7 @@ print("Extraction of Visual Encodings Done!")
 
 
 #---- Visual Encodings to Vega-Lite Spec Convertion -----
-vl_convertor("data/groundtruths")
+vl_convertor("data/groundtruths", "data/vl_groundtruths", model='gpt-3.5-turbo')
 print("vl-conversion Done!")
 
 

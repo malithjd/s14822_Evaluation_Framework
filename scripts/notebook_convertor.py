@@ -43,7 +43,7 @@ def process_notebook(notebook_file: str, notebooks_dir: str, output_dir: str):
     notebook_path = os.path.join(notebooks_dir, notebook_file)
     visual_codes = extract_visualization_codes(notebook_path)
     
-    output_filename = os.path.splitext(notebook_file)[0] + "_visuals.json"
+    output_filename = os.path.splitext(notebook_file)[0] + ".json"
     output_path = os.path.join(output_dir, output_filename)
     
     save_visualization_codes_to_json(visual_codes, output_path)

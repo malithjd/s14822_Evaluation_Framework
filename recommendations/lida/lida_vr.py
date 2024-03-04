@@ -48,3 +48,26 @@ def save_lida_recommendations(dataset_dir: str, output_dir: str, count):
             with open(output_path, 'w') as f:
                 json.dump(recommendations, f, indent=4)
                 print(f'{filename}_Lida_Recommendations Saved!')
+
+
+def save_lida_recommendations(dataset_dir: str, output_dir: str, visual_counts: dict):
+    os.makedirs(output_dir, exist_ok=True)
+    
+    for filename in os.listdir(dataset_dir):
+        if filename.endswith(".csv"):
+            base_filename = os.path.splitext(filename)[0]
+            json_filename = f"{base_filename}.json"
+            
+            count = visual_counts.get(json_filename)
+            
+            if count is not None:
+                filepath = os.path.join(dataset_dir, filename)
+                recommendations = get_visual_code(filepath, count)
+                
+                output_path = os.path.join(output_dir, f"{base_filename}_Lida_recs.json")
+                
+                with open(output_path, 'w') as f:
+                    json.dump(recommendations, f, indent=4)
+                    print(f'{filename} Lida Recommendations Saved!')
+            else:
+                print(f"No visual count found for {filename}, skipping...")

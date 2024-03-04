@@ -1,8 +1,11 @@
 import os
 from recommendations.lida.lida_vr import save_lida_recommendations
+from recommendations.gpt4.gpt4_vr import save_gpt_recommendations
 from lida import Manager, TextGenerationConfig , llm 
 import warnings
 import json
+from scripts.vl_convertor import vl_convertor
+
 
 # Filter out FutureWarning for seaborn
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -31,7 +34,14 @@ def count_visuals_in_json(directory):
 
 # Count visuals in corresponding groundtruth tables
 visual_counts = count_visuals_in_json(gt_dir)
+print(visual_counts)
+
+# # Call the function with the specified parameters
+# save_lida_recommendations(dataset_dir="data/preprocessed_tables/test", output_dir = "recommendations/lida/charts", visual_counts=visual_counts)
+
+# # Converting saved visuals into vega-lite
+vl_convertor(input_dir="recommendations/lida/charts", output_dir="recommendations/lida/ready_charts", model = 'gpt-3.5-turbo-0301')
 
 
-# Call the function with the specified parameters
-save_lida_recommendations(dataset_dir, output_dir, visual_counts)
+# save_gpt_recommendations(meta_dir="data/meta_summaries/test", output_dir="recommendations/gpt4/charts", visual_counts=visual_counts)
+# vl_convertor(input_dir="recommendations/gpt4/charts", output_dir="recommendations/gpt4/ready_charts", model = 'gpt-3.5-turbo-0301')

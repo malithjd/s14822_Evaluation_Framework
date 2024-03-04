@@ -13,5 +13,7 @@ litellm_uuid.txt
 
 test.py
 
+recommendations/**/*.json
+
 
 
