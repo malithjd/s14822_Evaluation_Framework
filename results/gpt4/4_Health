@@ -1,0 +1,9 @@
+{
+"groundtruths": 9,
+"success_count": 1,
+"success_gts": ["Average Charges by Smoker status, distinguished by Sex, as a bar plot."],
+"success_recs": ["Charges by Gender and Smoking Habit using a bar plot to show the differences across categories."],
+"fail_count": 8,
+"fail_gts": ["Distribution of Sex as a histogram.", "Distribution of Children as a histogram with discrete values.", "Distribution of Smoker status as a histogram.", "Distribution of Region as a histogram.", "Distribution of BMI by category as a histogram.", "Mean Charges by BMI category as a bar plot.", "Average Charges by Region as a bar plot.", "Average Charges by Age as a bar plot."],
+"fail_recs": ["Charges by Region and Smoking Habit shown using a bar plot to illustrate regional differences.", "Charges by the Number of Children and Smoking Habit represented using a box plot to display distributions.", "BMI by Age and Smoking Habit displayed using a line plot to show trends over age.", "Charges distribution by smoking habit using a box plot to compare non-smokers and smokers.", "Age distribution by gender presented using a histogram with a kernel density estimate overlay to visualize the distribution shape.", "BMI distribution by gender shown through a histogram with a kernel density estimate overlay for detailed distribution view.", "Average Charges by Age and Smoking Habit using a line plot to visualize the mean charges across ages.", "Average Charges by BMI and Smoking Habit displayed with a line plot to understand how BMI influences charges."]
+}

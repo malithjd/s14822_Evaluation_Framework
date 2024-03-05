@@ -1,0 +1,9 @@
+{
+"groundtruths": 6,
+"success_count": 3,
+"success_gts": ["Bar chart showing the count of each education-status category.", "Bar chart showing the count of each job category.", "Kernel Density Estimate (KDE) of account balances."],
+"success_recs": ["Count of Education Levels displayed in a bar chart", "Count of Subscription Status displayed in a bar chart", "Age Distribution displayed in a density plot"],
+"fail_count": 3,
+"fail_gts": ["Histogram with Kernel Density Estimate (KDE) overlay of age distribution, using 50 bins.", "Bar chart showing the count of each marital-status category.", "Bar chart showing the count of each credit in default category."],
+"fail_recs": ["Subscriptions by Month using a bar chart with sum aggregation on subscriptions", "Balance by Loan and Subscription Status shown in a box plot", "Number of Contacts by Previous shown in a line chart"]
+}

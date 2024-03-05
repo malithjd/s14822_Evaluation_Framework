@@ -23,7 +23,9 @@ def generate_llm_messages_gpt4(meta_summary, filename, count):
     "Rec_Gpt_2": "plt.figure(figsize=(10, 6))\\nsns.lineplot(data=df, x='column_name', y='other_column', estimator='agg_method', ci=None)\\nplt.title('Your Title Here')\\nplt.xlabel('X-axis Label')\\nplt.ylabel('Y-axis Label')"
     }
 
-    Your goal is to provide clear, concise, and structured visualization recommendations that directly respond to the dataset summary, enabling users to create effective visualizations with matplotlib."""
+    Your goal is to provide clear, concise, and structured visualization recommendations that directly respond to the dataset summary, enabling users to create effective visualizations with matplotlib.
+    Make sure that you are giving a valid json as the response!
+    """
 
     user_prompt = f"Based on the following meta data summary of the dataset, can you recommend the most suitable types of visualizations?: <SUM>\n{json.dumps(meta_summary, indent=2)}</SUM>. I need <N>{count}</N> recommendations"
 
@@ -33,7 +35,7 @@ def generate_llm_messages_gpt4(meta_summary, filename, count):
     ], filename
 
 
-def save_gpt_recommendations(meta_dir: str, output_dir: str, visual_counts):
+def save_gpt_recommendations(meta_dir: str, output_dir: str, visual_counts, model):
     os.makedirs(output_dir, exist_ok=True)
 
     for filename in os.listdir(meta_dir):
@@ -46,7 +48,7 @@ def save_gpt_recommendations(meta_dir: str, output_dir: str, visual_counts):
                 file_path = os.path.join(meta_dir, filename)
                 meta_summary = read_json_file(file_path)
                 messages, filename = generate_llm_messages_gpt4(meta_summary, filename, count)
-                llm_response = make_llm_call(messages, model="gpt-3.5-turbo-1106")
+                llm_response = make_llm_call(messages, model=model)
                 save_response_file(response_content=llm_response, filename=f'{base_filename}_gpt_recs.json', output_dir=output_dir)
             else:
                 print(f"No visual count found for {filename}, skipping...")

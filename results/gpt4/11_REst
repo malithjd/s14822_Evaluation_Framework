@@ -1,0 +1,9 @@
+{
+"groundtruths": 7,
+"success_count": 1,
+"success_gts": ["Bar chart visualizing the distribution of room types."],
+"success_recs": ["Number of Listings by Room Type"],
+"fail_count": 6,
+"fail_gts": ["Bar chart visualizing the distribution of bedrooms.", "Bar chart visualizing the distribution of beds.", "Bar chart visualizing the distribution of baths.", "Bar chart visualizing the distribution of ratings.", "Bar chart visualizing the distribution of types.", "Bar chart visualizing the distribution of locations."],
+"fail_recs": ["Median Price by Room Type", "Geospatial Distribution of Listings by Room Type", "Geospatial Distribution of Listings by Price and Availability", "Distribution of Listing Prices", "Price by Minimum Nights Stayed", "Price and Number of Reviews in the Last Twelve Months by Room Type"]
+}

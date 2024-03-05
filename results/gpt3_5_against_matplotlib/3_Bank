@@ -1,0 +1,11 @@
+
+    {
+    "groundtruths": 5,
+    "success_count": 0,
+    "success_gts": [],
+    "success_recs": [],
+    "fail_count": 5,
+    "fail_gts": ["Visual_1", "Visual_2", "Visual_3", "Visual_4", "Visual_5"],
+    "fail_recs": ["Rec_Gpt_1", "Rec_Gpt_2", "Rec_Gpt_3", "Rec_Gpt_4", "Rec_Gpt_5"]
+    }
+   

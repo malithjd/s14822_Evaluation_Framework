@@ -1,0 +1,9 @@
+{
+"groundtruths": 8,
+"success_count": 2,
+"success_gts": ["A boxplot showing the distribution of costs across different channels for Channel Comparison.", "A bar chart displaying total Advertising Costs by Channel."],
+"success_recs": ["Boxplot showing the distribution of marketing channel budgets.", "Bar chart visualizing total products sold by marketing channel."],
+"fail_count": 6,
+"fail_gts": ["A bar chart representing Advertising Costs by Channel with Channels on the x-axis and Costs on the y-axis.", "A bar chart arranged in descending order of average cost for each advertising channel.", "A donut chart showing the distribution of Advertising Costs across different channels.", "A donut chart highlighting the total Advertising Costs by Channel.", "Correlation Heatmap Between Advertising Channels and Product Sold showing symmetric correlation via colors.", "A bar chart visualization of the Correlation Between Advertising Channels and Product Sold with channels colored by correlation."],
+"fail_recs": ["Histogram displaying the distribution of marketing channel budgets.", "Scatter plot examining the effect of TV advertising on product sales.", "Scatter plot assessing the impact of Social Media advertising on product sales.", "Pairplot illustrating the correlation between different marketing channels and product sales with regression lines.", "Line chart representing data with an aggregate method over a category."]
+}

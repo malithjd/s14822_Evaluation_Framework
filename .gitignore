@@ -2,6 +2,7 @@ data/meta_summaries
 data/groundtruths
 data/preprocessed_tables
 data/vl_groundtruths
+data/vl_groundtruths_3.5
 
 history/*
 

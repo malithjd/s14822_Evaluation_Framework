@@ -11,10 +11,10 @@ from scripts.vl_convertor import vl_convertor
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
-dataset_dir = "data/preprocessed_tables/test"
+dataset_dir = "data/preprocessed_tables"
 output_dir = "recommendations/lida/charts"
 gt_dir = "data/groundtruths/test"
-textgen_config = TextGenerationConfig(n=1, temperature=0.3, model="gpt-3.5-turbo-0301", use_cache=True)
+# textgen_config = TextGenerationConfig(n=1, temperature=0.3, model="gpt-3.5-turbo-0301", use_cache=True)
 
 
 def count_visuals_in_json(directory):
@@ -37,11 +37,11 @@ visual_counts = count_visuals_in_json(gt_dir)
 print(visual_counts)
 
 # # Call the function with the specified parameters
-# save_lida_recommendations(dataset_dir="data/preprocessed_tables/test", output_dir = "recommendations/lida/charts", visual_counts=visual_counts)
+# save_lida_recommendations(dataset_dir="data/preprocessed_tables/test", output_dir = "recommendations/lida/charts/test", visual_counts=visual_counts)
 
 # # Converting saved visuals into vega-lite
-vl_convertor(input_dir="recommendations/lida/charts", output_dir="recommendations/lida/ready_charts", model = 'gpt-3.5-turbo-0301')
+# vl_convertor(input_dir="recommendations/lida/charts/test", output_dir="recommendations/lida/ready_charts/test", model = 'gpt-3.5-turbo-0301')
 
 
-# save_gpt_recommendations(meta_dir="data/meta_summaries/test", output_dir="recommendations/gpt4/charts", visual_counts=visual_counts)
-# vl_convertor(input_dir="recommendations/gpt4/charts", output_dir="recommendations/gpt4/ready_charts", model = 'gpt-3.5-turbo-0301')
+# save_gpt_recommendations(meta_dir="data/meta_summaries/test", output_dir="recommendations/gpt4/charts", visual_counts=visual_counts, model = "gpt-4-0125-preview")
+vl_convertor(input_dir="recommendations/gpt4/charts", output_dir="recommendations/gpt4/ready_charts", model = 'gpt-3.5-turbo-0301')

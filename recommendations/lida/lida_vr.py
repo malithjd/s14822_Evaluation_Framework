@@ -9,7 +9,7 @@ open_ai_key = os.getenv("OPEN_AI_KEY")
 library = "matplotlib"
 
 lida = Manager(text_gen = llm("openai", api_key=open_ai_key ))
-model_type = "gpt-3.5-turbo-1106"
+model_type = "gpt-3.5-turbo-0301"
 textgen_config_creative = TextGenerationConfig(n=1, temperature=0.5, model=model_type, use_cache=True)
 textgen_config_coherenced = TextGenerationConfig(n=1, temperature=0.1, model=model_type, use_cache=True)
 # persona="Data-Driven Decision Maker with Expertise in Visualization and Analytics"
