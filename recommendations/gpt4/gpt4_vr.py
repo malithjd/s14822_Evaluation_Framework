@@ -5,10 +5,7 @@ import litellm
 from scripts.vl_convertor import read_json_file, save_response_file, make_llm_call
 
 
-load_dotenv()
-open_ai_key = os.getenv("OPEN_AI_KEY")
-
-def generate_llm_messages_gpt4(meta_summary, filename, count):
+def generate_llm_messages(meta_summary, filename, count):
     
     system_prompt = """
     Your task as an AI specialized in data visualization is to analyze dataset summaries provided within <SUM> and </SUM> tags and recommend the most suitable visualizations techniques. Your recommendations should be limited to scatterplots, bar charts, line charts, pie charts, and area charts. You must provide N number of recommendations which will be specified within <N></N> tags. Utilize matplotlib to structure your recommendations, focusing on specifying relevant column names and any necessary aggregation methods.
@@ -27,11 +24,11 @@ def generate_llm_messages_gpt4(meta_summary, filename, count):
     Make sure that you are giving a valid json as the response!
     """
 
-    user_prompt = f"Based on the following meta data summary of the dataset, can you recommend the most suitable types of visualizations?: <SUM>\n{json.dumps(meta_summary, indent=2)}</SUM>. I need <N>{count}</N> recommendations"
+    user_prompt = f"Based on the following meta data summary of the dataset, can you recommend the most suitable types of visualizations?: <SUM>\n{json.dumps(meta_summary, indent=2)}</SUM>. I need <N>{count}</N> recommendations. Give the response as a valid JSON object"
 
     return [
         {"role": "system", "content": system_prompt},
-        {"role": "assistant", "content": user_prompt}
+        {"role": "user", "content": user_prompt}
     ], filename
 
 
@@ -47,7 +44,7 @@ def save_gpt_recommendations(meta_dir: str, output_dir: str, visual_counts, mode
             if count is not None:
                 file_path = os.path.join(meta_dir, filename)
                 meta_summary = read_json_file(file_path)
-                messages, filename = generate_llm_messages_gpt4(meta_summary, filename, count)
+                messages, filename = generate_llm_messages(meta_summary, filename, count)
                 llm_response = make_llm_call(messages, model=model)
                 save_response_file(response_content=llm_response, filename=f'{base_filename}_gpt_recs.json', output_dir=output_dir)
             else:

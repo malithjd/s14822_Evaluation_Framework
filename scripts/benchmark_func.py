@@ -22,11 +22,12 @@ def generate_llm_messages_benchmark(gt_content, recs_content, base_name):
 
     **Output Requirements:**
     Compile your findings into a JSON format with:
-    - "groundtruths": Total count of unique visuals within ground truth tags.
+    - "groundtruths": Total count of unique visuals within <GROUND> tags.
+    - "recommendations": Total count of unique recommendations within <RECS> tags.
     - "success_count": Number of matches between recommendations and ground truths.
-    - "success_gts" & "success_recs": Titles of matched visuals from ground truths and recommendations, respectively.
+    - "success_gts" & "success_recs": Keys of matched visuals from ground truths and recommendations, respectively.
     - "fail_count": Number of visuals in ground truths not matched with any recommendations.
-    - "fail_gts" & "fail_recs": Titles of unmatched visuals from ground truths and recommendations, respectively.
+    - "fail_gts" & "fail_recs": Keys of unmatched visuals from ground truths and recommendations, respectively.
 
     Your analysis should rigorously apply the criteria above to determine the efficacy of the visual recommendations compared to the ground truths. 
 
@@ -34,12 +35,13 @@ def generate_llm_messages_benchmark(gt_content, recs_content, base_name):
     
     {
     "groundtruths": 5,
+    "recommendations": 5,
     "success_count": 3,
-    "success_gts": ["Title GT 1", "Title GT 2", "Title GT 3"],
-    "success_recs": ["Title Rec 1", "Title Rec 2", "Title Rec 3"],
+    "success_gts": ["Key of GT 1", "Key of GT 2", "Key of GT 3"],
+    "success_recs": ["Key of Rec 1", "Key of Rec 2", "Key of Rec 3"],
     "fail_count": 2,
-    "fail_gts": ["Title GT 4", "Title GT 5"],
-    "fail_recs": ["Title Rec 4", "Title Rec 5"]
+    "fail_gts": ["Key of GT 4", "Key of GT 5"],
+    "fail_recs": ["Key of Rec 4", "Key of Rec 5"]
     }
     """
 
@@ -65,14 +67,14 @@ def generate_llm_messages_benchmark(gt_content, recs_content, base_name):
     ], base_name
 
 def benchmark_visual_recommendations(gt_dir, recs_dir, output_dir, model):
-    
     gt_files = [f for f in os.listdir(gt_dir) if f.endswith('.json')]
-    recs_files = [f for f in os.listdir(recs_dir) if f.endswith('_gpt_recs.json')]
+    recs_files = [f for f in os.listdir(recs_dir) if "_recs.json" in f]
     
     for gt_file in gt_files:
         base_name = gt_file.replace('.json', '')
-        recs_file = f"{base_name}_gpt_recs.json"
-        if recs_file in recs_files:
+        matched_files = [f for f in recs_files if f.startswith(base_name)]
+        
+        for recs_file in matched_files:
             gt_path = os.path.join(gt_dir, gt_file)
             recs_path = os.path.join(recs_dir, recs_file)
             
@@ -83,9 +85,9 @@ def benchmark_visual_recommendations(gt_dir, recs_dir, output_dir, model):
                 messages, filename = generate_llm_messages_benchmark(gt_content, recs_content, base_name)
                 response_content = make_llm_call(messages, model)
                 print(f"Benchmark process completed for {filename}")
-                save_response_file(response_content=response_content, filename=base_name, output_dir=output_dir)
+                save_response_file(response_content=response_content, filename=f'{base_name}.json', output_dir=output_dir)
             else:
                 print(f"Skipping due to JSON errors: {gt_file}")
-        else:
+        if not matched_files:
             print(f"No matching recommendations found for {gt_file}")
     

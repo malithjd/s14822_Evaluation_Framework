@@ -4,18 +4,34 @@ import os
 import json
 
 load_dotenv()
+anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
 open_ai_key = os.getenv("OPEN_AI_KEY")
+open_ai_key_4 = os.getenv("OPEN_AI_KEY_4")
 
 library = "matplotlib"
 
-lida = Manager(text_gen = llm("openai", api_key=open_ai_key ))
-model_type = "gpt-3.5-turbo-0301"
-textgen_config_creative = TextGenerationConfig(n=1, temperature=0.5, model=model_type, use_cache=True)
-textgen_config_coherenced = TextGenerationConfig(n=1, temperature=0.1, model=model_type, use_cache=True)
+def get_lida(model):
+    if model=="gpt-4-0125-preview":
+        key = open_ai_key_4
+        Llm_model = 'openai'
+    elif model=="claude-2.1":
+        key = anthropic_api_key
+        Llm_model = 'claude'
+    else:
+        key = open_ai_key
+        Llm_model = 'openai'
+    lida = Manager(text_gen = llm(Llm_model, api_key=key))
+    return lida
+
+
 # persona="Data-Driven Decision Maker with Expertise in Visualization and Analytics"
 
 
-def get_visual_code(filepath, count):
+def get_visual_code(filepath, count, model):
+    lida = get_lida(model)
+    textgen_config_creative = TextGenerationConfig(n=1, temperature=0.5, model=model, use_cache=True)
+    textgen_config_coherenced = TextGenerationConfig(n=1, temperature=0.1, model=model, use_cache=True)
+
     summary = lida.summarize(filepath, summary_method="default")
     goals = lida.goals(summary, n=count, textgen_config=textgen_config_creative)
     codes = {}
@@ -33,24 +49,24 @@ def get_visual_code(filepath, count):
 
 
 
-def save_lida_recommendations(dataset_dir: str, output_dir: str, count):
-    os.makedirs(output_dir, exist_ok=True)
+# def save_lida_recommendations(dataset_dir: str, output_dir: str, count):
+#     os.makedirs(output_dir, exist_ok=True)
     
-    for filename in os.listdir(dataset_dir):
-        if filename.endswith(".csv"):
-            filepath = os.path.join(dataset_dir, filename)
-            recommendations = get_visual_code(filepath, count)
+#     for filename in os.listdir(dataset_dir):
+#         if filename.endswith(".csv"):
+#             filepath = os.path.join(dataset_dir, filename)
+#             recommendations = get_visual_code(filepath, count)
             
-            # Define the output path for saving recommendations
-            output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_Lida_recs.json")
+#             # Define the output path for saving recommendations
+#             output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_Lida_recs.json")
             
-            # Save the recommendations in JSON format
-            with open(output_path, 'w') as f:
-                json.dump(recommendations, f, indent=4)
-                print(f'{filename}_Lida_Recommendations Saved!')
+#             # Save the recommendations in JSON format
+#             with open(output_path, 'w') as f:
+#                 json.dump(recommendations, f, indent=4)
+#                 print(f'{filename}_Lida_Recommendations Saved!')
 
 
-def save_lida_recommendations(dataset_dir: str, output_dir: str, visual_counts: dict):
+def save_lida_recommendations(dataset_dir: str, output_dir: str, model, visual_counts: dict):
     os.makedirs(output_dir, exist_ok=True)
     
     for filename in os.listdir(dataset_dir):
@@ -62,7 +78,7 @@ def save_lida_recommendations(dataset_dir: str, output_dir: str, visual_counts: 
             
             if count is not None:
                 filepath = os.path.join(dataset_dir, filename)
-                recommendations = get_visual_code(filepath, count)
+                recommendations = get_visual_code(filepath, count, model)
                 
                 output_path = os.path.join(output_dir, f"{base_filename}_Lida_recs.json")
                 
