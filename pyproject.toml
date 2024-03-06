@@ -13,6 +13,7 @@ nbformat = "^5.9.2"
 scipy = "^1.12.0"
 litellm = "^1.28.0"
 lida = "^0.0.14"
+pathlib = "^1.0.1"
 
 [tool.poetry.group.dev.dependencies]
 nbformat = "^5.9.2"

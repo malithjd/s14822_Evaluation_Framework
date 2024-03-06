@@ -8,6 +8,11 @@ history/*
 
 .env
 
+*.pyc
+*.cpython-311.pyc
+
+__pycache__
+
 litellm_uuid.txt
 
 .python-version
@@ -15,6 +20,9 @@ litellm_uuid.txt
 test.py
 
 recommendations/**/*.json
+recommendations
+
+results
 
 
 
