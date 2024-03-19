@@ -42,7 +42,7 @@ def get_model_names(folder_name):
 def add_model_values(root_dir):
     for root, dirs, files in os.walk(root_dir):
         for dir in dirs:
-            vr_model, evaluating_model = get_model_names(dir)
+            evaluating_model, vr_model = get_model_names(dir)
             child_folder_path = Path(root) / dir
             for json_file in child_folder_path.glob('*.json'):
                 with open(json_file, 'r') as file:

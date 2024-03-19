@@ -37,8 +37,8 @@ def preprocess_datatables(data_directory, preprocessed_directory, columns_with_m
             'Col Cnt': df.shape[1],
             'Row Cnt': df.shape[0],
             'Missing Col Cnt': df.isnull().any().sum(),
-            'TS Data': False,  # Placeholder, updated later if applicable
-            'Time Cols': []  # Placeholder, updated later if applicable
+            'TS Data': False,  
+            'Time Cols': []
         }
         
         # Append initial summary to before-preprocessing summary
