@@ -1,3 +1,6 @@
+#commit message "vl_convertor change to vl_extractor" is wrong. Nothing chnaged in vl_convertor
+#renaming happened to "notebook_convertor" as "visual_extractor"
+
 import json
 import os
 from dotenv import load_dotenv

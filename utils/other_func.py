@@ -70,6 +70,6 @@ def results_to_csv(root_dir):
 
     df = pd.DataFrame(data_rows)
     df = df[columns_order]
-    output_dir = "Benchmark_Results.csv"
+    output_dir = "Benchmark_Results_12_Datasets.csv"
     df.to_csv(output_dir, index=False)
     print(f"Results saved in {output_dir}")

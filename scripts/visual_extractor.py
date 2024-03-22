@@ -1,5 +1,8 @@
 #! G:\Internship\Surge\For Evaluation\Project\.venv\Scripts\python.exe
 
+#commit message "vl_convertor change to vl_extractor" is wrong. Nothing chnaged in vl_convertor
+#renaming happened to "notebook_convertor" as "visual_extractor"
+
 import nbformat
 import os
 import json
