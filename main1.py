@@ -1,14 +1,16 @@
 from scripts.preprocessor import preprocess_datatables
 from scripts.meta_generator import generate_and_save_summaries
-from scripts.notebook_convertor import process_notebook
+from scripts.visual_extractor import process_notebook
 from scripts.vl_convertor import vl_convertor
 import warnings
 import os
 
-
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 #---- Preprocessing the Raw Datasets (.csv) from kaggle ------
+### If there is any NaN value that is very important and needed to have in the dataset as it is.. Please include the exact column names of them here.
+### It will be ignored from the basic data preprocceing methods
+### For more accurate results, Please review the raw/original dataset and make neccesery edits there before running main1.py
 columns_with_meaningful_nan = {}
 before_preprocessing, after_preprocessing = preprocess_datatables('data/datatables', 'data/preprocessed_tables', columns_with_meaningful_nan)
 

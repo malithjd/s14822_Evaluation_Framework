@@ -36,7 +36,7 @@ Project Folder (root)
 ├── scripts
 │   ├── preprocessor.py       <- Script to preprocess the raw datasets collected
 │   ├── meta_generator.py     <- Script to generate summarized metadata of the raw datasets
-│   ├── notebook_convertor.py <- Script to extract the visual encodings from raw ipynb notebooks
+│   ├── visual_extractor.py <- Script to extract the visual encodings from raw ipynb notebooks
 │   ├── vl_convertor.py       <- Script to convert extracted visual encodings to vega-lite spec
 ├── recommendations
 │   ├── lida

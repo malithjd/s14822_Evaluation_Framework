@@ -1,7 +1,6 @@
 import os
-from recommendations.lida.lida_vr import save_lida_recommendations
-from recommendations.gpt4.gpt4_vr import save_gpt_recommendations
-# from recommendations.claude3.claude3_vr import save_claude_recommendations
+from models.Lida.lida_vr import save_lida_recommendations
+from models.CustomGPT_VRS.gpt4_vr import save_gpt_recommendations
 from lida import Manager, TextGenerationConfig , llm 
 import warnings
 import json
@@ -14,7 +13,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 dataset_dir = "data/preprocessed_tables"
 output_dir = "recommendations/lida/charts"
-gt_dir = "data/vl_groundtruths/test"
+gt_dir = "data/vl_groundtruths"
 # textgen_config = TextGenerationConfig(n=1, temperature=0.3, model="gpt-3.5-turbo-0301", use_cache=True)
 
 
@@ -37,16 +36,14 @@ def count_visuals_in_json(directory):
 visual_counts = count_visuals_in_json(gt_dir)
 print(visual_counts)
 
-# # Call the function with the specified parameters
-# save_lida_recommendations(dataset_dir="data/preprocessed_tables/test", output_dir = "recommendations/lida/charts3_5", model = "gpt-3.5-turbo-0125", visual_counts=visual_counts)
-# save_lida_recommendations(dataset_dir="data/preprocessed_tables/test", output_dir = "recommendations/lida/charts4", model = "gpt-4-0125-preview", visual_counts=visual_counts)
 
-# # Converting saved visuals into vega-lite
-vl_convertor(input_dir="recommendations/lida/charts3_5", output_dir="recommendations/lida/charts3_5_vl", model = 'gpt-4-0125-preview')
-
+# save_lida_recommendations(dataset_dir="data/preprocessed_tables", output_dir = "recommendations/lida/charts3_5", model = "gpt-3.5-turbo-0125", visual_counts=visual_counts)
+# save_lida_recommendations(dataset_dir="data/preprocessed_tables", output_dir = "recommendations/lida/charts4", model = "gpt-4-0125-preview", visual_counts=visual_counts)
+# vl_convertor(input_dir="recommendations/lida/charts3_5", output_dir="recommendations/lida/charts3_5_vl", model = 'gpt-4-0125-preview')
+# vl_convertor(input_dir="recommendations/lida/charts4", output_dir="recommendations/lida/charts4_vl", model = 'gpt-4-0125-preview')
 
 
-# save_gpt_recommendations(meta_dir="data/meta_summaries/test", output_dir="recommendations/gpt4/charts", visual_counts=visual_counts, model = "gpt-4-0125-preview")
+save_gpt_recommendations(meta_dir="data/meta_summaries", output_dir="recommendations/gpt4/charts", visual_counts=visual_counts, model = "gpt-4-0125-preview")
+save_gpt_recommendations(meta_dir="data/meta_summaries", output_dir="recommendations/gpt3_5/charts", visual_counts=visual_counts, model = "gpt-3.5-turbo-0125")
 # vl_convertor(input_dir="recommendations/gpt4/charts", output_dir="recommendations/gpt4/charts_vl", model = 'gpt-4-0125-preview')
-
-# save_claude_recommendations(meta_dir="data/meta_summaries/test", output_dir="recommendations/claude3/charts", visual_counts=visual_counts)
+# vl_convertor(input_dir="recommendations/gpt3_5/charts", output_dir="recommendations/gpt3_5/charts_vl", model = 'gpt-4-0125-preview')

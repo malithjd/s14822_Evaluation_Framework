@@ -8,7 +8,7 @@ from scripts.vl_convertor import read_json_file, save_response_file, make_llm_ca
 def generate_llm_messages(meta_summary, filename, count):
     
     system_prompt = """
-    Your task as an AI specialized in data visualization is to analyze dataset summaries provided within <SUM> and </SUM> tags and recommend the most suitable visualizations techniques. Your recommendations should be limited to scatterplots, bar charts, line charts, pie charts, and area charts. You must provide N number of recommendations which will be specified within <N></N> tags. Utilize matplotlib to structure your recommendations, focusing on specifying relevant column names and any necessary aggregation methods.
+    Your task as an AI specialized in data visualization is to analyze dataset summaries provided within <SUM> and </SUM> tags and recommend the most suitable visualizations. Your recommendations should be limited to scatterplots, bar charts, line charts, pie charts, and area charts. You must provide N number of recommendations which will be specified within <N></N> tags. Utilize matplotlib to structure your recommendations, focusing on specifying relevant column names and any necessary aggregation methods.
 
     For each recommended visualization type, provide a Python code snippet. These snippets should be structured to easily adapt to the dataset described in the summary. Your response should consist solely of these code snippets, formatted as a JSON object. Use keys "Rec_Gpt_1", "Rec_Gpt_2", etc., to indicate the order of recommendations, with each key mapping to a Python code snippet that illustrates how to implement the suggested visualization type. Focus on the logic and structure of the visualization code rather than including inline dataset values.
 
