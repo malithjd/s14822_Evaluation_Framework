@@ -1,4 +1,5 @@
 # Evaluation Framework For Benchmark LLM and ML-Based Visualization Recommendation Systems Using Real-World Datasets
+![System Architecture](images/system_arch.png)
 
 ## Description
 
